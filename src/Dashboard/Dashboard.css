@@ -1,0 +1,17 @@
+.welcome-card{
+    width: 80%;
+    margin: auto;
+    margin-top: 20px;
+}
+.submit-card{
+    width: 38%;
+    margin: auto;
+    margin-left: 10%;
+    margin-top: 20px;
+}
+.dashboard-tab{
+    width: 100%;
+    text-align: left;
+    padding-left: 70px;
+}
+

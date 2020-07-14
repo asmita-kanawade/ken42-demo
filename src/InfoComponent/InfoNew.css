@@ -1,0 +1,140 @@
+.wrapper-progressBar {
+    width: 100%
+}
+
+.progressBar {
+}
+
+.progressBar li {
+    list-style-type: none;
+    float: left;
+    width: 33%;
+    position: relative;
+    text-align: center;
+    cursor: pointer;
+}
+
+.progressBar li:before {
+    content: " ";
+    line-height: 30px;
+    border-radius: 50%;
+    width: 30px;
+    height: 30px;
+    border: 1px solid #ddd;
+    display: block;
+    text-align: center;
+    margin: 0 auto 10px;
+    background-color: white
+}
+
+.progressBar li:after {
+    content: "";
+    position: absolute;
+    width: 100%;
+    height: 2px;
+    background-color: #ddd;
+    top: 15px;
+    left: -50%;
+    z-index: -1;
+}
+
+.progressBar li:first-child:after {
+    content: none;
+}
+
+.progressBar li.active {
+    color: dodgerblue;
+}
+
+.progressBar li.active:before {
+    border-color: dodgerblue;
+    background-color: dodgerblue
+}
+
+.progressBar li.active + li:after {
+    background-color: dodgerblue;
+}
+
+/* Input Fields  */
+
+@mixin label-inactive() {
+  font-size: 1.2rem;
+  transform: translateY(0);
+}
+
+@mixin label-active() {
+  font-size: 0.75rem;
+  transform: translateY(-14px);
+}
+
+.form-field {
+  display: block;
+  margin-bottom: 16px;
+}
+.form-field__label {
+  display: block;
+  font-weight: normal;
+  left: 0;
+  margin: 0;
+  padding: 18px 12px 0;
+  position: absolute;
+  top: 0;
+  width: 100%;
+}
+.form-field__control {
+  background: #eee;
+  border-radius: 8px 8px 0 0;
+  overflow: hidden;
+  position: relative;
+  width: 100%;
+}
+.form-field__bar {
+  border-bottom: 2px solid dodgerblue;
+  bottom: 0;
+  content: "";
+  display: block;
+  left: 0;
+  margin: 0 auto;
+  position: absolute;
+  right: 0;
+  transform: scaleX(0);
+  width: 1%;
+}
+.form-field__input,
+.form-field__textarea {
+  appearance: none;
+  background: transparent;
+  border: 0;
+  border-bottom: 1px solid #999;
+  color: #333;
+  display: block;
+  font-size: 1.2rem;
+  margin-top: 24px;
+  outline: 0;
+  padding: 0 12px 10px 12px;
+  width: 100%;
+}
+
+/* updated css */
+
+.form-n-stepper{
+  width: 80%;
+  margin: auto;
+  margin-top: 20px;
+}
+
+.step-heading{
+  text-align: left;
+  padding-left: 20px;
+}
+
+/* Drop down */
+select {
+  width: 100%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  display: inline-block;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
