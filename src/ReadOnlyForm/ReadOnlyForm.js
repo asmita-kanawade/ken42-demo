@@ -2,6 +2,9 @@ import React, { Component } from 'react';
 import axios from 'axios';
 import { useParams } from 'react-router-dom';
 
+import Card from '../UI/Card';
+import './ReadOnlyForm.css';
+
 export default class ReadOnlyForm extends Component{
     state = {
         userID: localStorage.getItem('userId'),
@@ -34,7 +37,7 @@ export default class ReadOnlyForm extends Component{
             })
             .then(res => {
                 let application = res.data[0];
-                console.log(application.gender);
+                console.log(application);
                 
                 this.setState({
                     _id: application._id,
@@ -63,50 +66,36 @@ export default class ReadOnlyForm extends Component{
 
     render(){
         return(
-            <div>
+            <div  className="display-form">
                 <button onClick={this.redirectToDashboard}>Back to Dashboard</button>
-                <div>
-                    <h2>Personal Information</h2>
-                    <div>
-                        <label>Name
-                            <p>{this.state.name}</p>
-                        </label>
-                        <label>Phone Number
-                            <p>{this.state.phoneNumber}</p>
-                        </label>
-                        <label>Gender
-                            <p>{this.state.Gender}</p>
-                        </label>
+                <Card>
+                <div>Application ID: {this.state._id}</div>
+                <div >
+                    <h3>Personal Information</h3>
+                    <div className="info">
+                        <p>Name: {this.state.name}</p>
+                        <p>Phone Number: {this.state.phoneNumber}</p>
+                        <p>Gender: {this.state.gender}</p>
                     </div>
                 </div>
                 <div>
-                    <h2>Parent Information</h2>
-                    <div>
-                        <label>Mother's Name
-                            <p>{this.state.mother_name}</p>
-                        </label>
-                        <label>Father's Name
-                            <p>{this.state.father_name}</p>
-                        </label>
-                        <label>Gender
-                            <p>{this.state.gender}</p>
-                        </label>
+                    <h3>Parent Information</h3>
+                    <div className="info">
+                        <p>Mother's Name: {this.state.mother_name}</p>
+                        <p>Father's Name: {this.state.father_name}</p>
+                        <p>Email: {this.state.email}</p>
                     </div>
                 </div>
                 <div>
-                    <h2>Communication Address Information</h2>
-                    <div>
-                        <label>Communication Address
-                            <p>{this.state.communication_address}</p>
-                        </label>
-                        <label>Address Line 1
-                            <p>{this.state.address_line1}</p>
-                        </label>
-                        <label>Address Line 2
-                            <p>{this.state.address_line2}</p>
-                        </label>
+                    <h3>Communication Address</h3>
+                    <div className="info">
+                        <p>Address Type: {this.state.communication_address}</p>
+                        <p>Address Line 1: {this.state.address_line1}</p>
+                        <p>Address Line 2: {this.state.address_line2}</p>
                     </div>
                 </div>
+                </Card>
+
             </div>
         )
     }

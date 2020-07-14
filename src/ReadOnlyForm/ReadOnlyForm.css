@@ -1,0 +1,9 @@
+.display-form {
+    width: 50%; 
+    text-align: left; 
+    margin: auto
+}
+
+.display-form .info {
+    padding-left: 10px 
+}

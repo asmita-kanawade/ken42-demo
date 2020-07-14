@@ -1,10 +1,10 @@
 .container-login{
   margin: auto;
   margin-top: 10%;
-    border: 1px solid#ccc;
-    box-shadow: 1px 1px 3px -2px;
+    /* border: 1px solid#ccc;
+    box-shadow: 1px 1px 3px -2px; */
     width: 40%;
-    border-radius: 4px;
+    /* border-radius: 4px; */
     padding: 10px;
     text-align: left;
 }
@@ -56,3 +56,42 @@ input[type=radio]{
 .checkbox-container{
     /* margin-left: 10px; */
 }
+
+.sign-in {
+    text-align: center;
+}
+
+
+/* --- New CSS --- */
+
+.ingredient-form {
+    width: 30rem;
+    margin: 2rem auto;
+    max-width: 80%;
+  }
+  
+  .form-control label,
+  .form-control input {
+    display: block;
+    width: 100%;
+  }
+  
+  .form-control input {
+    font: inherit;
+    padding: 0.1rem 0.25rem;
+    border: none;
+    border-bottom: 2px solid #ccc;
+    margin-bottom: 1rem;
+  }
+  
+  .form-control input:focus {
+    outline: none;
+    border-bottom-color: #ff2058;
+  }
+  
+  .ingredient-form__actions {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  

@@ -27,8 +27,11 @@ export default class Login extends React.Component {
             data: data
           })
         .then(resp => {    
-            console.log(`response from login api${JSON.stringify(resp.data)}`);    
+            //console.log(`response from login api${JSON.stringify(resp.data)}`);    
+
             if (resp.data.status === 'success') {
+                alert(resp.data.message);                               
+
                 localStorage.setItem('phoneNumber', resp.data.user.phoneNumber);
                 localStorage.setItem('name', resp.data.user.name);
                 localStorage.setItem('userId', resp.data.user._id);
@@ -58,7 +61,7 @@ export default class Login extends React.Component {
             isAdmin: isAdmin
         }
 
-        console.log("calling api..");
+        //console.log("calling api..");
         this.callAPI(data);
       
        
@@ -100,6 +103,9 @@ export default class Login extends React.Component {
         return (
           
             <div className="container-login">
+                <Card>
+                <div className="sign-in">Sign In</div>
+                <hr />
                 <form onSubmit={this.submitHandler} autoComplete="off" className="form-container">
         {this.state.notify ?<>{
                 alert("Registerd successfully..!")
@@ -110,7 +116,7 @@ export default class Login extends React.Component {
                         <>
                             {/* <p className='p'>Date Of Birth:</p> */}
                             <input
-                            placeholder="Date Of Birth"
+                                placeholder="Date Of Birth"
                                 required
                                 className="inp"
                                 type='date'
@@ -121,7 +127,7 @@ export default class Login extends React.Component {
 
                             {/* <p className='p'>Roll Number:</p> */}
                             <input
-                            placeholder="Roll Number"
+                                placeholder="Roll Number"
                                 required
                                 className="inp"
                                 type='text'
@@ -172,7 +178,6 @@ export default class Login extends React.Component {
                                 required
                                 className="inp"
                                 type="text"
-                                InputProps={{ inputProps: { min: 0 } }}
                                 name='phoneNumber'
                                 value={this.state.phoneNumber}
                                 onChange={this.changeHandler}
@@ -193,8 +198,8 @@ export default class Login extends React.Component {
                         className="inp"
                         type='submit' />
                 </form>
+                </Card>
             </div>
-          
-        );
-    }
+        )
+   }
 }

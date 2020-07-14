@@ -144,6 +144,13 @@ export default class InfoNew extends Component {
         
     }
 
+    redirectToDashboard = () => {        
+        this.props.history.push({
+            pathname: '/dashboard'
+        });
+    }
+
+
     render() {
         return (
             <div className="form-n-stepper">
@@ -218,7 +225,8 @@ export default class InfoNew extends Component {
                                             </div>
                                         </div>
                                         <div className="step-actions">
-                                            <button type="submit" onClick={() => this.nextStep("2")} className="waves-effect waves-dark btn btn-sm btn-primary next-step" data-feedback="someFunction21">CONTINUE</button>
+                                            <button onClick={this.redirectToDashboard}>Back to Dashboard</button>
+                                            <button type="submit" onClick={() => this.nextStep("2")} className="waves-effect waves-dark btn btn-sm btn-primary next-step" data-feedback="someFunction21">NEXT</button>
                                         </div>
                                     </div>
 
@@ -262,8 +270,9 @@ export default class InfoNew extends Component {
                                             </div>
                                         </div>
                                         <div className="step-actions">
-                                            <button onClick={() => this.nextStep("1")} className="waves-effect waves-dark btn btn-sm btn-secondary previous-step">BACK</button>
-                                            <button type="submit" onClick={() => this.nextStep("3")} className="waves-effect waves-dark btn btn-sm btn-primary next-step" data-feedback="someFunction21">CONTINUE</button>
+                                            <button onClick={this.redirectToDashboard}>Back to Dashboard</button>
+                                            <button onClick={() => this.nextStep("1")} className="waves-effect waves-dark btn btn-sm btn-secondary previous-step">PREVIOUS</button>
+                                            <button type="submit" onClick={() => this.nextStep("3")} className="waves-effect waves-dark btn btn-sm btn-primary next-step" data-feedback="someFunction21">NEXT</button>
                                         </div>
                                     </div>
 
@@ -314,10 +323,10 @@ export default class InfoNew extends Component {
                                             </div>
                                         </div>
                                         <div className="step-actions">
-                                            <button onClick={() => this.nextStep("2")} className="waves-effect waves-dark btn btn-sm btn-secondary previous-step">BACK</button>
+                                            <button onClick={this.redirectToDashboard}>Back to Dashboard</button>
+                                            <button onClick={() => this.nextStep("2")} className="waves-effect waves-dark btn btn-sm btn-secondary previous-step">PREVIOUS</button>
                                             <button onClick={this.saveDraftHandler}>SAVE DRAFT</button>
                                             <button onClick={this.submitApplicationHandler}>SUBMIT</button>
-
                                         </div>
                                     </div>
                                 </li>
