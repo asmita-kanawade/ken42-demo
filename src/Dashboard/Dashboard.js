@@ -76,6 +76,8 @@ export default class Dashboard extends Component {
 
     }
 
+    
+
     render() {
         return (
             <div>
@@ -104,7 +106,7 @@ export default class Dashboard extends Component {
                     <div className="submit-card">
                         {this.state.applications.length == 0 ? <div>
                             <Card>
-                                <p>No Application Available..!</p>
+                                <p>Application Not Submitted yet..!</p>
                             </Card>
                         </div> : <></>}
 
@@ -112,9 +114,9 @@ export default class Dashboard extends Component {
                             this.state.applications.map(application => {
 
                                 if (!application.is_draft) {
-                                    return <Card>
-                                        <div key={application._id}>
-                                            <h3>name: {application.name}</h3>
+                                    return <div className="submit-card">
+                                        <Card key={application._id}>
+                                            <h3>{application.name}</h3>
                                             <p>email: {application.email}</p>
                                             <p>address: {application.address_line1}</p>
                                             <div>
@@ -124,10 +126,17 @@ export default class Dashboard extends Component {
                                                     <button type="button" onClick={() => this.openApplication(application._id)}>VIEW</button>
                                                 </div>
                                             </div>
-                                        </ div>
-                                    </Card>
+                                        </ Card>
+                                    </div>
                                 }
-                                return null;
+                                return (
+                                    <div className="empty-card">
+                                <div>
+                                <Card>
+                                    <p>Application not submitted yet..!</p>
+                                </Card>
+                            </div>
+                            </div>);
                             })
                         }
                     </div>
@@ -139,19 +148,28 @@ export default class Dashboard extends Component {
                 <div className="submit-card">
                     {this.state.applications.length == 0 ? <div>
                         <Card>
-                            <p>No Draft Available..!</p>
+                            <p>Draft is empty</p>
                         </Card>
                     </div> : <></>}
                     {
                         this.state.applications.map(application => {
                             if (application.is_draft) {
-                                return <div key={application._id} onClick={() => this.editApplication(application._id)}>
-                                    <h3>name: {application.name}</h3>
+                                return <div key={application._id} className="draft-card" onClick={() => this.editApplication(application._id)}>
+                                <Card>
+                                    <h3>{application.name}</h3>
                                     <p>email: {application.email}</p>
                                     <p>address: {application.address_line1}</p>
+                                </Card>
                                 </div>
                             }
-                            return null;
+                            return (
+                            <div className="submit-card">
+                            <div>
+                                <Card>
+                                    <p>Draft is empty</p>
+                                </Card>
+                            </div>
+                        </div>);
                         })
                     }
 

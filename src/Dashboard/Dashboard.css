@@ -4,7 +4,9 @@
     margin-top: 20px;
 }
 .submit-card{
-    width: 38%;
+    /* width: 38%; */
+    text-align: left;
+    width: 78%;
     margin: auto;
     margin-left: 10%;
     margin-top: 20px;
@@ -14,4 +16,10 @@
     text-align: left;
     padding-left: 70px;
 }
-
+.empty-card{
+    width: 100%;
+}
+.draft-card{
+    cursor: pointer;
+    text-align: left;
+}

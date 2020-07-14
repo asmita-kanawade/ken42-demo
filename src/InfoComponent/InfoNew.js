@@ -129,6 +129,20 @@ export default class InfoNew extends Component {
         });
     }
 
+    componentDidUpdate(){
+        if(this.state.name != "" || this.state.phoneNumber !=""){
+            document.getElementById('step1').className="active";
+        }else document.getElementById('step1').className="";
+
+        if(this.state.mother_name != "" ){
+            document.getElementById('step2').className="active";
+        }else document.getElementById('step2').className="";
+
+        if(this.state.address_line1 != "" ){
+            document.getElementById('step3').className="active";
+        }else document.getElementById('step3').className="";
+        
+    }
 
     render() {
         return (
@@ -139,9 +153,9 @@ export default class InfoNew extends Component {
                             <div className="col-xs-12 col-md-8 offset-md-2 block border">
                                 <div className="wrapper-progressBar">
                                     <ul className="progressBar">
-                                        <li onClick={() => this.nextStep("1")} className="active" >Personal Information</li>
-                                        <li onClick={() => this.nextStep("2")}>Parent Information</li>
-                                        <li onClick={() => this.nextStep("3")}>Communication Address</li>
+                                        <li id="step1" onClick={() => this.nextStep("1")} >Personal Information</li>
+                                        <li id="step2" onClick={() => this.nextStep("2")}>Parent Information</li>
+                                        <li id="step3" onClick={() => this.nextStep("3")}>Communication Address</li>
                                     </ul>
                                 </div>
                             </div>
