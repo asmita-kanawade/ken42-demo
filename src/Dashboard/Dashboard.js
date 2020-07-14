@@ -52,7 +52,7 @@ export default class Dashboard extends Component {
             .then(res => {
                 console.log(res.data);
                 if (res.data.status === 'success') {
-                    alert(res.data.message);
+                    // alert(res.data.message);
 
                     this.props.history.push({
                         pathname: '/display-info',
@@ -120,8 +120,8 @@ export default class Dashboard extends Component {
                                             <div>
                                                 {/* <button>View</button> */}
                                                 <div className="access-code">
-                                                    <input type="text" placeholder="Enter Access Code and Submit" name="inpAccessCode" value={this.state.inpAccessCode} onChange={this.changeHandler}></input>
-                                                    <button type="button" onClick={() => this.openApplication(application._id)}>Submit</button>
+                                                    <input type="text" placeholder="Enter Access Code to view application" name="inpAccessCode" value={this.state.inpAccessCode} onChange={this.changeHandler}></input>
+                                                    <button type="button" onClick={() => this.openApplication(application._id)}>VIEW</button>
                                                 </div>
                                             </div>
                                         </ div>

@@ -64,7 +64,7 @@ export default class ReadOnlyForm extends Component{
     render(){
         return(
             <div>
-                <button onClick={this.redirectToDashboard}>Dashboard</button>
+                <button onClick={this.redirectToDashboard}>Back to Dashboard</button>
                 <div>
                     <h2>Personal Information</h2>
                     <div>
