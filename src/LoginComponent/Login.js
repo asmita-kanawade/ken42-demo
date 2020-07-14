@@ -20,28 +20,28 @@ export default class Login extends React.Component {
 
     }
 
-    callAPI=(data)=>{
+    callAPI = (data) => {
         Axios({
             method: `POST`,
             url: `register-login`,
             data: data
-          })
-        .then(resp => {    
-            //console.log(`response from login api${JSON.stringify(resp.data)}`);    
+        })
+            .then(resp => {
+                //console.log(`response from login api${JSON.stringify(resp.data)}`);    
 
-            if (resp.data.status === 'success') {
-                alert(resp.data.message);                               
+                if (resp.data.status === 'success') {
+                    alert(resp.data.message);
 
-                localStorage.setItem('phoneNumber', resp.data.user.phoneNumber);
-                localStorage.setItem('name', resp.data.user.name);
-                localStorage.setItem('userId', resp.data.user._id);
-                
-                this.props.history.push({pathname: `/dashboard`});
-            }
-            else
-                alert("Failed to login!");                               
-        });
-      
+                    localStorage.setItem('phoneNumber', resp.data.user.phoneNumber);
+                    localStorage.setItem('name', resp.data.user.name);
+                    localStorage.setItem('userId', resp.data.user._id);
+
+                    this.props.history.push({ pathname: `/dashboard` });
+                }
+                else
+                    alert("Failed to login!");
+            });
+
     }
 
     submitHandler = (event) => {
@@ -63,8 +63,8 @@ export default class Login extends React.Component {
 
         //console.log("calling api..");
         this.callAPI(data);
-      
-       
+
+
     }
 
     changeHandler = (event) => {
@@ -86,120 +86,116 @@ export default class Login extends React.Component {
     doLogin = (loginDetails) => {
         alert("login with name" + loginDetails.isAdmin);
         this.props.history.push({
-            pathname:`/info`
-          });
+            pathname: `/info`
+        });
 
     }
 
     componentDidMount = () => {
         let userID = localStorage.getItem('userId');
 
-        if(userID) {
-            this.props.history.push({pathname: `/dashboard`});
+        if (userID) {
+            this.props.history.push({ pathname: `/dashboard` });
         }
     }
 
     render() {
         return (
-          
+
             <div className="container-login">
                 <Card>
-                <div className="sign-in">Sign In</div>
-                <hr />
-                <form onSubmit={this.submitHandler} autoComplete="off" className="form-container">
-        {this.state.notify ?<>{
-                alert("Registerd successfully..!")
-            }{this.setState({
-                notify:!this.state.notify
-            })}</>:<></>}
-                    {!this.state.isAdmin ?
-                        <>
-                            {/* <p className='p'>Date Of Birth:</p> */}
+                    <div className="sign-in">Sign In</div>
+                    <hr />
+                    <form autoComplete="off" className="form-container">
+
+                        {!this.state.isAdmin ?
+                            <>
+                                {/* <p className='p'>Date Of Birth:</p> */}
+                                <input
+                                    placeholder="Date Of Birth"
+                                    required
+                                    className="inp"
+                                    type='date'
+                                    name='dob'
+                                    value={this.state.dob}
+                                    onChange={this.changeHandler}
+                                />
+
+                                {/* <p className='p'>Roll Number:</p> */}
+                                <input
+                                    placeholder="Roll Number"
+                                    required
+                                    className="inp"
+                                    type='text'
+                                    name='rollNumber'
+                                    value={this.state.rollNumber}
+                                    onChange={this.changeHandler}
+                                />
+                                {/* <p className='p'>Name:</p> */}
+                                <input
+                                    placeholder="Name"
+                                    required
+                                    className="inp"
+                                    type='text'
+                                    name='name'
+                                    value={this.state.name}
+                                    onChange={this.changeHandler}
+                                />
+
+                                {/* <p className='p'>Phone Number:</p> */}
+                                <input
+                                    placeholder="Phone Number"
+                                    required
+                                    className="inp"
+                                    type="text"
+                                    // InputProps={{ inputProps: { min: 0 } }}
+                                    name='phoneNumber'
+                                    value={this.state.phoneNumber}
+                                    onChange={this.changeHandler}
+                                />
+
+
+                            </> :
+                            <>
+                                {/* <p className='p'>Name:</p> */}
+                                <input
+                                    placeholder="Name"
+                                    required
+                                    className="inp"
+                                    type='text'
+                                    name='name'
+                                    value={this.state.name}
+                                    onChange={this.changeHandler}
+                                />
+
+                                {/* <p className='p'>Phone Number:</p> */}
+                                <input
+                                    placeholder="Phone Number"
+                                    required
+                                    className="inp"
+                                    type="text"
+                                    name='phoneNumber'
+                                    value={this.state.phoneNumber}
+                                    onChange={this.changeHandler}
+                                />
+
+                            </>}
+
+                        <div className="checkbox-container">
                             <input
-                                placeholder="Date Of Birth"
-                                required
-                                className="inp"
-                                type='date'
-                                name='dob'
-                                value={this.state.dob}
-                                onChange={this.changeHandler}
+                                type='checkbox'
+                                name='is_admin'
+                                onChange={this.checkHandler}
+                                defaultChecked={this.state.isAdmin}
                             />
-
-                            {/* <p className='p'>Roll Number:</p> */}
-                            <input
-                                placeholder="Roll Number"
-                                required
-                                className="inp"
-                                type='text'
-                                name='rollNumber'
-                                value={this.state.rollNumber}
-                                onChange={this.changeHandler}
-                            />
-                            {/* <p className='p'>Name:</p> */}
-                            <input
-                            placeholder="Name"
-                                required
-                                className="inp"
-                                type='text'
-                                name='name'
-                                value={this.state.name}
-                                onChange={this.changeHandler}
-                            />
-
-                            {/* <p className='p'>Phone Number:</p> */}
-                            <input
-                            placeholder="Phone Number"
-                                required
-                                className="inp"
-                                type="text"
-                                // InputProps={{ inputProps: { min: 0 } }}
-                                name='phoneNumber'
-                                value={this.state.phoneNumber}
-                                onChange={this.changeHandler}
-                            />
-
-
-                        </> :
-                        <>
-                            {/* <p className='p'>Name:</p> */}
-                            <input
-                            placeholder="Name"
-                                required
-                                className="inp"
-                                type='text'
-                                name='name'
-                                value={this.state.name}
-                                onChange={this.changeHandler}
-                            />
-
-                            {/* <p className='p'>Phone Number:</p> */}
-                            <input
-                            placeholder="Phone Number"
-                                required
-                                className="inp"
-                                type="text"
-                                name='phoneNumber'
-                                value={this.state.phoneNumber}
-                                onChange={this.changeHandler}
-                            />
-
-                        </>}
-
-                    <div className="checkbox-container">
-                        <input
-                            type='checkbox'
-                            name='is_admin'
-                            onChange={this.checkHandler}
-                            defaultChecked={this.state.isAdmin}
-                        />
-                        <label className='p'>Is Admin</label>
-                    </div>
-                    <input
-                        className="inp"
-                        type='submit' />
-                </form>
+                            <label className='p'>Is Admin</label>
+                        </div>
+                        <div className="submit">
+                            <button onClick={this.submitHandler} >SUBMIT</button>
+                        </div>
+                    </form>
                 </Card>
             </div>
         )
-   }
+    }
 }

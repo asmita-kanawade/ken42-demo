@@ -59,6 +59,12 @@ input[type=radio]{
 
 .sign-in {
     text-align: center;
+    font-size: x-large;
+    color: #ff2058;
+}
+
+.submit {
+  text-align: center;
 }
 
 

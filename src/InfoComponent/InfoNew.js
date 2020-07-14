@@ -119,7 +119,7 @@ export default class InfoNew extends Component {
 
             if (response.data.status === 'success') {
                 if (!response.data.application.is_draft)
-                    alert('Your access code is : ' + response.data.application.access_code);
+                    alert(`Your access code is : ${response.data.application.access_code}. Please note down.`);
 
                 this.props.history.push('/dashboard');
             }

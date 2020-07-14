@@ -138,16 +138,14 @@ export default class Dashboard extends Component {
 
                                 if (!application.is_draft) {
                                     return <div key={application._id} className="submit-card">
-                                        <Card>
+                                        <Card >
                                             <h3>{application.name}</h3>
-                                            <p>email: {application.email}</p>
-                                            <p>address: {application.address_line1}</p>
+                                            <p>Email: {application.email}</p>
+                                            <p>Address: {application.address_line1}</p>
+                                            <p>Application ID: {application._id}</p>
                                             <div>
-                                                {/* <button>View</button> */}
-                                                <div>
-                                                    <input className="access-code" type="text" placeholder="Enter Access Code to view application" name="inpAccessCode" value={this.state.inpAccessCode} onChange={this.changeHandler}></input>
-                                                    <button type="button" onClick={() => this.openApplication(application._id)}>VIEW</button>
-                                                </div>
+                                                <input className="access-code" type="text" placeholder="Enter access code to view the application" name="inpAccessCode" value={this.state.inpAccessCode} onChange={this.changeHandler}></input>
+                                                <button type="button" onClick={() => this.openApplication(application._id)}>VIEW</button>
                                             </div>
                                         </ Card>
                                     </div>
@@ -180,8 +178,9 @@ export default class Dashboard extends Component {
                                     return <div key={application._id} className="draft-card" >
                                         <Card>
                                             <h3>{application.name}</h3>
-                                            <p>email: {application.email}</p>
-                                            <p>address: {application.address_line1}</p>
+                                            <p>Email: {application.email}</p>
+                                            <p>Address: {application.address_line1}</p>
+                                            <p>Application ID: {application._id}</p>
                                             <button type="button" onClick={() => this.editApplication(application._id)}>EDIT</button>
                                         </Card>
                                     </div>
