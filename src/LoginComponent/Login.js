@@ -88,11 +88,19 @@ export default class Login extends React.Component {
 
     }
 
+    componentDidMount = () => {
+        let userID = localStorage.getItem('userId');
+
+        if(userID) {
+            this.props.history.push({pathname: `/dashboard`});
+        }
+    }
+
     render() {
         return (
           
             <div className="container-login">
-                <form onSubmit={this.submitHandler} autocomplete="off" className="form-container">
+                <form onSubmit={this.submitHandler} autoComplete="off" className="form-container">
         {this.state.notify ?<>{
                 alert("Registerd successfully..!")
             }{this.setState({
@@ -138,7 +146,7 @@ export default class Login extends React.Component {
                                 required
                                 className="inp"
                                 type="text"
-                                InputProps={{ inputProps: { min: 0 } }}
+                                // InputProps={{ inputProps: { min: 0 } }}
                                 name='phoneNumber'
                                 value={this.state.phoneNumber}
                                 onChange={this.changeHandler}

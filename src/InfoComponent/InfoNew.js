@@ -315,7 +315,7 @@ export default class InfoNew extends Component {
                                         </div>
                                         <div className="step-actions">
                                             <button onClick={() => this.nextStep("2")} className="waves-effect waves-dark btn btn-sm btn-secondary previous-step">BACK</button>
-                                            <button onClick={this.saveDraftHandler}>DRAFT</button>
+                                            <button onClick={this.saveDraftHandler}>SAVE DRAFT</button>
                                             <button onClick={this.submitApplicationHandler}>SUBMIT</button>
 
                                         </div>

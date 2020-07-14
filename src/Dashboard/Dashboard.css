@@ -2,9 +2,20 @@
     width: 80%;
     margin: auto;
     margin-top: 20px;
+    position: relative;
 }
+.welcome-card>*{
+    display: inline-flex;
+}
+
+.welcome-text{
+    text-align: left;
+    margin: auto;
+    margin-top: 20px;
+    width: 30%;
+}
+
 .submit-card{
-    /* width: 38%; */
     text-align: left;
     width: 78%;
     margin: auto;
@@ -19,7 +30,14 @@
 .empty-card{
     width: 100%;
 }
-.draft-card{
-    cursor: pointer;
+.draft-card {
     text-align: left;
+}
+.access-code{
+    width: 65%;
+    padding-left: 2px;
+    padding-right: 2px;
+}
+.dashboard-container{
+    padding-bottom: 20px;
 }

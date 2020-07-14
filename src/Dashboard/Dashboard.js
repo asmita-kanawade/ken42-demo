@@ -16,6 +16,10 @@ export default class Dashboard extends Component {
     componentDidMount() {
         let userId = localStorage.getItem('userId');
 
+        if(!userId) {
+            this.props.history.push({pathname: `/`});
+        }
+
         axios({
             method: `POST`,
             url: `get-applications`,
@@ -80,26 +84,28 @@ export default class Dashboard extends Component {
 
     render() {
         return (
-            <div>
+            <div className="dashboard-container">
                 <div className="welcome-card">
-                    <Card>
+
                         <div className="welcome-text">
-                            <h4>Welcome {this.state.name}</h4>
+                            <h3>Welcome {this.state.name}</h3>
                         </div>
 
                         {
                             this.state.applications.length === 0 ?
+                            <div className="btn-create">
                                 <button
                                     className="btn"
                                     onClick={this.createApplication}
                                 >
-                                    Create
-                    </button>
+                                    Create Application
+                                </button>
+                            </div>
                                 : null
                         }
-                    </Card>
                 </div>
-                <br /><br /><hr />
+
+                 <hr />       
 
                 <div>
                     <h3 className="dashboard-tab">Submitted Applications</h3>
@@ -114,15 +120,15 @@ export default class Dashboard extends Component {
                             this.state.applications.map(application => {
 
                                 if (!application.is_draft) {
-                                    return <div className="submit-card">
-                                        <Card key={application._id}>
+                                    return <div key={application._id} className="submit-card">
+                                        <Card>
                                             <h3>{application.name}</h3>
                                             <p>email: {application.email}</p>
                                             <p>address: {application.address_line1}</p>
                                             <div>
                                                 {/* <button>View</button> */}
-                                                <div className="access-code">
-                                                    <input type="text" placeholder="Enter Access Code to view application" name="inpAccessCode" value={this.state.inpAccessCode} onChange={this.changeHandler}></input>
+                                                <div>
+                                                    <input  className="access-code" type="text" placeholder="Enter Access Code to view application" name="inpAccessCode" value={this.state.inpAccessCode} onChange={this.changeHandler}></input>
                                                     <button type="button" onClick={() => this.openApplication(application._id)}>VIEW</button>
                                                 </div>
                                             </div>
@@ -141,7 +147,7 @@ export default class Dashboard extends Component {
                         }
                     </div>
                 </div>
-            <br /><br /><hr />
+            <br /><br />
         
             <div>
             <h3 className="dashboard-tab">Draft Applications</h3>
@@ -154,16 +160,17 @@ export default class Dashboard extends Component {
                     {
                         this.state.applications.map(application => {
                             if (application.is_draft) {
-                                return <div key={application._id} className="draft-card" onClick={() => this.editApplication(application._id)}>
+                                return <div key={application._id} className="draft-card" >
                                 <Card>
                                     <h3>{application.name}</h3>
                                     <p>email: {application.email}</p>
                                     <p>address: {application.address_line1}</p>
+                                    <button type="button" onClick={() => this.editApplication(application._id)}>EDIT</button>
                                 </Card>
                                 </div>
                             }
                             return (
-                            <div className="submit-card">
+                            <div key={application._id} className="submit-card">
                             <div>
                                 <Card>
                                     <p>Draft is empty</p>
