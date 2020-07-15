@@ -4,7 +4,7 @@ class StepThree extends Component {
     constructor(props){
         super(props);
         this.state={
-            communication_address:"Permanant Address",
+            // communication_address:"Permanant Address",
             phone_number:'',
             gender:'',
         }

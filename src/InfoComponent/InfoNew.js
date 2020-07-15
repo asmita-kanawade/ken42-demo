@@ -12,7 +12,7 @@ export default class InfoNew extends Component {
         mother_name: "",
         father_name: "",
         email: "",
-        communication_address: "",
+        communication_address: "Permanant Address",
         address_line1: "",
         address_line2: "",
         is_default_address: false,
@@ -40,7 +40,7 @@ export default class InfoNew extends Component {
             })
                 .then(res => {
                     let application = res.data[0];
-                    console.log(application.gender);
+                    //console.log(application.gender);
 
                     this.setState({
                         _id: application._id,
@@ -70,30 +70,29 @@ export default class InfoNew extends Component {
         });
     }
 
-    nextStep(step) {
+    switchStep(step) {
         if (this.state.current_step !== step) {
             this.setState({
                 current_step: step
             })
         }
-
+        this.saveDraftHandler(step);
     }
 
-    saveDraftHandler = async () => {
-        this.setState({
-            current_step: "3"
-        });
+    saveDraftHandler = async (step) => {
+        //alert("saving draft..!");
         await this.setState({ is_draft: true });
-        this.saveInfoHandler();
+        this.saveInfoHandler(step);
     }
 
 
     submitApplicationHandler = async () => {
+        //alert("saving data..");
         await this.setState({ is_draft: false });
-        this.saveInfoHandler();
+        this.saveInfoHandler("4");
     }
 
-    saveInfoHandler = () => {
+    saveInfoHandler = (step) => {
         const data = {
             _id: this.state._id,
             userID: this.state.userID,
@@ -117,11 +116,16 @@ export default class InfoNew extends Component {
             data
         }).then(response => {
 
+            //console.log(" saved application with App id: "+response.data.application._id);
+            
             if (response.data.status === 'success') {
                 if (!response.data.application.is_draft)
                     alert(`Your access code is : ${response.data.application.access_code}. Please note down.`);
 
-                this.props.history.push('/dashboard');
+                if(step=="4")   
+                    this.props.history.push('/dashboard');
+
+                this.setState({_id: response.data.application._id});
             }
             if (response.data.status === 'failed') {
                 alert('Something went wrong!');
@@ -144,6 +148,7 @@ export default class InfoNew extends Component {
         
     }
 
+    
     redirectToDashboard = () => {        
         this.props.history.push({
             pathname: '/dashboard'
@@ -160,9 +165,9 @@ export default class InfoNew extends Component {
                             <div className="col-xs-12 col-md-8 offset-md-2 block border">
                                 <div className="wrapper-progressBar">
                                     <ul className="progressBar">
-                                        <li id="step1" onClick={() => this.nextStep("1")} >Personal Information</li>
-                                        <li id="step2" onClick={() => this.nextStep("2")}>Parent Information</li>
-                                        <li id="step3" onClick={() => this.nextStep("3")}>Communication Address</li>
+                                        <li id="step1" onClick={() => this.switchStep("1")} >Personal Information</li>
+                                        <li id="step2" onClick={() => this.switchStep("2")}>Parent Information</li>
+                                        <li id="step3" onClick={() => this.switchStep("3")}>Communication Address</li>
                                     </ul>
                                 </div>
                             </div>
@@ -226,7 +231,7 @@ export default class InfoNew extends Component {
                                         </div>
                                         <div className="step-actions">
                                             <button onClick={this.redirectToDashboard}>Back to Dashboard</button>
-                                            <button type="submit" onClick={() => this.nextStep("2")} className="waves-effect waves-dark btn btn-sm btn-primary next-step" data-feedback="someFunction21">NEXT</button>
+                                            <button type="submit" onClick={() => this.switchStep("2")} className="waves-effect waves-dark btn btn-sm btn-primary next-step" data-feedback="someFunction21">NEXT</button>
                                         </div>
                                     </div>
 
@@ -271,14 +276,14 @@ export default class InfoNew extends Component {
                                         </div>
                                         <div className="step-actions">
                                             <button onClick={this.redirectToDashboard}>Back to Dashboard</button>
-                                            <button onClick={() => this.nextStep("1")} className="waves-effect waves-dark btn btn-sm btn-secondary previous-step">PREVIOUS</button>
-                                            <button type="submit" onClick={() => this.nextStep("3")} className="waves-effect waves-dark btn btn-sm btn-primary next-step" data-feedback="someFunction21">NEXT</button>
+                                            <button onClick={() => this.switchStep("1")} className="waves-effect waves-dark btn btn-sm btn-secondary previous-step">PREVIOUS</button>
+                                            <button type="submit" onClick={() => this.switchStep("3")} className="waves-effect waves-dark btn btn-sm btn-primary next-step" data-feedback="someFunction21">NEXT</button>
                                         </div>
                                     </div>
 
                                 </li>
                             </> : <></>}
-                            {this.state.current_step == "3" ? <>
+                            {this.state.current_step == "3" || this.state.current_step == "4"? <>
                                 <li className="step">
                                 <div className="step-heading">Step 3</div>
                                     <div className="step-new-content">
@@ -324,9 +329,10 @@ export default class InfoNew extends Component {
                                         </div>
                                         <div className="step-actions">
                                             <button onClick={this.redirectToDashboard}>Back to Dashboard</button>
-                                            <button onClick={() => this.nextStep("2")} className="waves-effect waves-dark btn btn-sm btn-secondary previous-step">PREVIOUS</button>
-                                            <button onClick={this.saveDraftHandler}>SAVE DRAFT</button>
-                                            <button onClick={this.submitApplicationHandler}>SUBMIT</button>
+                                            <button onClick={() => this.switchStep("2")} className="waves-effect waves-dark btn btn-sm btn-secondary previous-step">PREVIOUS</button>
+                                            <button onClick={()=>this.switchStep("4")}>SAVE DRAFT</button>
+                                            <button onClick={this.submitApplicationHandler} disabled={!this.state.address_line1}>SUBMIT</button>
+
                                         </div>
                                     </div>
                                 </li>
