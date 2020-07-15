@@ -4,14 +4,14 @@ class StepThree extends Component {
     constructor(props){
         super(props);
         this.state={
-            selectValue:'',
+            communication_address:"Permanant Address",
             phone_number:'',
             gender:'',
         }
     }
     changeHandler=()=>{}
     handleChange=(e)=>{
-            this.setState({selectValue:e.target.value});
+            this.setState({communication_address:e.target.value});
           }
     
     render(){
@@ -21,8 +21,8 @@ class StepThree extends Component {
                 <form>
                 <select 
                     id="addresses" 
-                    name="addresses"
-                    value={this.state.selectValue} 
+                    name="communication_address"
+                    value={this.state.communication_address} 
                     onChange={this.handleChange} >
                     <option value="PermanantAddress">Permanant Address</option>
                     <option value="BusinessAddress">Business Address</option>
